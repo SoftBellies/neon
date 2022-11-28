@@ -7,11 +7,10 @@ void setup() {
   pinMode (led2, OUTPUT);
 }
 
-void loop() {
-  int i, clign, both;
-  digitalWrite(led1, HIGH);
-  digitalWrite(led2, HIGH);
-  delay(random(2000,5000));
+void effect1()
+{
+  int i,clign, both;
+
   clign = random(5,20);
   both = random(1,4);
   for( i = 0; i < clign;i++)
@@ -28,4 +27,28 @@ void loop() {
     delay(random(10,150));
   }
 
+
+}
+void effect2()
+{
+
+
+}
+
+
+void loop() {
+  int randEffect;
+  digitalWrite(led1, HIGH);
+  digitalWrite(led2, HIGH);
+  delay(random(2000,5000));
+
+  randEffect = random(1,2);
+  switch (randEffect){
+      case 1:
+        effect1();
+        break;
+      case 2:
+        effect2();
+        break;
+  }
 }
