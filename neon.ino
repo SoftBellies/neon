@@ -35,24 +35,11 @@ void effect2()
 
 }
 
-void effect3()
-{
-  global_blink(10);
-  global_blink(30);
-  global_blink(50);
-  global_blink(70);
-  global_blink(80);
-  global_blink(120);
-  global_blink(150);
-  global_blink(170);
-  global_blink(180);
-  
-}
-  
-global_blink(int period)
+void global_blink(int period)
 {
   int i;
-  for(i=0;i<10;i++){
+  for(i=0;i<10;i++)
+  {
     delay(period);
     digitalWrite(led1,LOW);
     digitalWrite(led2,LOW);
@@ -61,6 +48,26 @@ global_blink(int period)
     digitalWrite(led2,HIGH);
   }
 }
+
+void effect3()
+{
+  global_blink(10);
+  global_blink(15);
+  global_blink(20);
+  global_blink(25);
+  global_blink(30);
+  global_blink(35);
+  global_blink(40);
+  global_blink(35);
+  global_blink(30);
+  global_blink(25);
+  global_blink(20);
+  global_blink(15);
+  global_blink(10);
+
+}
+  
+
 
 void loop() {
   int randEffect;
