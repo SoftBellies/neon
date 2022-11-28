@@ -1,6 +1,5 @@
-
-int led1 = 13;
-int led2 = 12;
+int led1 = 5;
+int led2 = 6;
 
 void setup() {
   pinMode (led1,OUTPUT);
@@ -28,7 +27,30 @@ void effect1() {
 }
 
 void effect2() {
-  
+  //Avec PWM
+  int i,clign, both;
+  clign = random(1,10);
+  both = random(1,4);
+
+  for( i = 0;i<clign;i++) {
+    digitalWrite(led1,LOW);
+    if(both == 1){
+      digitalWrite(led2,LOW);
+    }
+    delay(random(10,150));
+    for(int i2=0; i2<=255; i2++) {
+      if(clign < 3 && both == 1){
+        analogWrite(led1, i2);
+        delay(8);
+      }else{
+        digitalWrite(led1,HIGH);
+      }
+    }
+    if(both == 1){
+      digitalWrite(led2,HIGH);
+    }
+    delay(random(10,150));
+  }
 }
 
 void effect3() {
@@ -61,7 +83,8 @@ void loop() {
   digitalWrite(led2,HIGH);
   delay(random(2000,5000));
 
-  randEffect = random(1,3);
+  //randEffect = random(1,3);
+  randEffect = 2;
   switch (randEffect){
     case 1:
       effect1();
