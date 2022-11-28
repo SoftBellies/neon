@@ -43,7 +43,7 @@ void effect3() {
   global_blink(180);
 }
   
-global_blink(int period) {
+void global_blink(int period) {
   int i;
   for(i=0;i<10;i++){
     delay(period);
