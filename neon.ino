@@ -1,18 +1,19 @@
 int led1 = 5;
 int led2 = 6;
 
-void setup() {
+void setup(){
   pinMode (led1,OUTPUT);
   pinMode (led2,OUTPUT);
+  Serial.begin(115200);
 }
 
-void effect1() {
-  int i,clign, both;
+void effect1(){
+  int i,clign,both;
 
   clign = random(5,20);
   both = random(1,4);
 
-  for( i = 0;i<clign;i++) {
+  for( i=0;i<clign;i++){
     digitalWrite(led1,LOW);
     if(both == 1){
       digitalWrite(led2,LOW);
@@ -26,37 +27,36 @@ void effect1() {
   }
 }
 
-void effect2() {
+void effect2(){
   //Avec PWM
-  int i,clign, both;
-  clign = random(1,10);
-  both = random(1,4);
+  int i,clign,both;
+  clign=random(1,8);
+  both=random(1,3);
 
-  for( i = 0;i<clign;i++) {
-    digitalWrite(led1,LOW);
-    if(both == 1){
-      digitalWrite(led2,LOW);
-    }
-    delay(random(10,150));
-    for(int i2=0; i2<=255; i2++) {
-      if(clign < 3 && both == 1){
-        analogWrite(led1, i2);
-        delay(8);
-      }else{
-        digitalWrite(led1,HIGH);
+  digitalWrite(led1,HIGH);
+  digitalWrite(led2,HIGH);
+  for(int i=0;i<clign;i++){
+    digitalWrite(led2,LOW);
+    delay(random(30,80));
+    if(clign<=2){
+      for(int i2=2;i2<=255;i2++){
+        analogWrite(led2,i2);
+        delay(random(0,10));
       }
-    }
-    if(both == 1){
+    }else{
       digitalWrite(led2,HIGH);
+      delay(random(10,150));
     }
-    delay(random(10,150));
+    if(clign<=4 && both==1){
+      digitalWrite(led1,LOW);
+      delay(random(10,150));
+    }
   }
 }
   
-void global_blink(int period) {
+void global_blink(int period){
   int i;
-  for(i=0;i<10;i++)
-  {
+  for(i=0;i<10;i++){
     delay(period);
     digitalWrite(led1,LOW);
     digitalWrite(led2,LOW);
@@ -66,8 +66,7 @@ void global_blink(int period) {
   }
 }
 
-void effect3()
-{
+void effect3(){
   global_blink(10);
   global_blink(15);
   global_blink(20);
@@ -81,19 +80,15 @@ void effect3()
   global_blink(20);
   global_blink(15);
   global_blink(10);
-
 }
-  
 
-
-void loop() {
+void loop(){
   int randEffect;
   digitalWrite(led1,HIGH);
   digitalWrite(led2,HIGH);
   delay(random(2000,5000));
 
-  //randEffect = random(1,3);
-  randEffect = 2;
+  randEffect=random(1,3);
   switch (randEffect){
     case 1:
       effect1();
